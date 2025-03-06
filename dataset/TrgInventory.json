@@ -1,0 +1,17 @@
+{
+	"name": "TrgInventory",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "TrgLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "TrgInventory"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

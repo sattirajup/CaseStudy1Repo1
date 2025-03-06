@@ -1,0 +1,9 @@
+{
+	"name": "padma-datafactory",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "334de5d2-cdb2-4bf4-9e49-1935afbc6e87",
+		"tenantId": "f15ba741-7cb9-48ad-9517-9ec28d7912d1"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "tblAggInventory",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SRC_OrdersInventory",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tblAggInventory"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

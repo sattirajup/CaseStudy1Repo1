@@ -1,0 +1,64 @@
+{
+	"name": "loaddatawithsk",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "stg_tblAggInventory",
+						"type": "DatasetReference"
+					},
+					"name": "azuresqldatabse"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "tblAggInventory",
+						"type": "DatasetReference"
+					},
+					"name": "tblAggInventory"
+				}
+			],
+			"transformations": [
+				{
+					"name": "SK"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          ID as integer,",
+				"          TitleTag as string,",
+				"          Measure as integer,",
+				"          IDTitleTag as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> azuresqldatabse",
+				"azuresqldatabse keyGenerate(output(SK as long),",
+				"     startAt: 1L,",
+				"     stepValue: 1L) ~> SK",
+				"SK sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     recreate:true,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          ID,",
+				"          TitleTag,",
+				"          Measure,",
+				"          IDTitleTag,",
+				"          SK",
+				"     )) ~> tblAggInventory"
+			]
+		}
+	}
+}
